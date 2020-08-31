@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
+@Entity(name =  "temperature")
 @Table(name = "temperature")
 public class Temperature implements Comparable<Temperature> , Serializable {
     @Id
@@ -12,7 +12,7 @@ public class Temperature implements Comparable<Temperature> , Serializable {
     @Column(name = "temperature_id")
     private Integer temperatureId;
 
-  /*  @Column(name = "device_id")
+    /*@ManyToOne
     private Integer deviceId;*/
 
     @Column(name = "temperature_value")
@@ -38,14 +38,14 @@ public class Temperature implements Comparable<Temperature> , Serializable {
         this.temperatureId = temperatureId;
     }
 
-  /*  public Integer getDeviceId() {
+   /*public Integer getDeviceId() {
         return deviceId;
     }
 
     public void setDeviceId(Integer deviceId) {
         this.deviceId = deviceId;
-    }*/
-
+    }
+*/
     public Integer getTemperatureValue() {
         return temperatureValue;
     }
@@ -59,21 +59,20 @@ public class Temperature implements Comparable<Temperature> , Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Temperature that = (Temperature) o;
-        return Objects.equals(temperatureId, that.temperatureId) &&
-                Objects.equals(temperatureValue, that.temperatureValue);
+        return Objects.equals(temperatureValue, that.temperatureValue);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(temperatureId, temperatureValue);
+        return Objects.hash(temperatureValue);
     }
 
     @Override
     public int compareTo(Temperature o) {
         int tempDif = this.getTemperatureValue().compareTo(o.getTemperatureValue());
-        if(tempDif ==0){
+       /* if(tempDif ==0){
             return this.getTemperatureId().compareTo(o.getTemperatureId());
-        }
+        }*/
         return tempDif;
     }
 }

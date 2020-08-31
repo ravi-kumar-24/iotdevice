@@ -41,8 +41,13 @@ public class DeviceController {
         return   deviceService.save(device);
     }
 
-    @RequestMapping( value = "/device/{id}/data", method = RequestMethod.GET)
+    @RequestMapping( value = "/device/{id}", method = RequestMethod.GET)
     public Device getDevice(@PathVariable Integer id){
+        return   deviceService.getById(id);
+    }
+
+    @RequestMapping( value = "/device/{id}/data", method = RequestMethod.GET)
+    public List<Integer> getDeviceByFilter(@PathVariable Integer id){
         return   deviceService.getByFilter(id);
     }
 }

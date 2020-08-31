@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@Table(name = "device")
+@Entity(name = "Device")
+@Table(name = "Device")
 public class Device  implements Serializable {
 
     @Id
@@ -17,8 +17,8 @@ public class Device  implements Serializable {
     @Column(name = "device_name")
     private String deviceName;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="device_id")
+    @OneToMany(targetEntity = Temperature.class  ,cascade = CascadeType.ALL)
+    @JoinColumn(name="device_id" )
     private Set<Temperature> temperatures;
 
 
